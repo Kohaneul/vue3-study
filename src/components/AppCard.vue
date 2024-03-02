@@ -1,23 +1,57 @@
 <template>
-     <div class="card">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
+	<div class="card">
+		<div class="card-body">
+			<!-- type: news, notice-->
+			<span class="badge bg-secondary">{{ typeName }}</span>
+			<h5 class="card-title mt-2">{{ title }}</h5>
+			<p class="card-test">{{ contents }}</p>
+			<a href="#" class="btn" :class="isLikeClass">좋아요</a>
+		</div>
+	</div>
 </template>
 
 <script>
-  console.log('AppCard module');
-  export default {
-		setup(){		
-			console.log('AppCard setup()');
-			return {};
+import {computed} from 'vue';
+export default{
+	props:{
+		type:{
+			type:String,
+			default:'news',
+			validator:(value)=>{
+				return ['news','notice'].includes(value);
+			}
+		},
+		title:{
+			type:String,
+			required:true,
+		},
+		contents:{
+			type:String,
+			// required:true,
+		},
+		isLike:{
+			type:Boolean,
+			default:false,
+		},
+		obj:{
+			type:Object,
+			default:()=>{{}}
 		}
-  }
-</script>
+	},
+	emits:['toggle-like'],
+	setup(props,context){
+		const isLikeClass = computed(()=>props.isLike ? 'btn-danger' : 'btn-outline-danger');
+		const typeName = computed(()=>{
+			props.type == 'news' ? '뉴스' : '공지사항'
+		});
+		const toggleLike = ()=>{
+			context.emit('toggleLike');
+		}
+		return {isLikeClass,typeName,toggleLike}
+	}
+}
+		</script>
 
-<style lang="scss" scoped>
+<style>
 
 </style>

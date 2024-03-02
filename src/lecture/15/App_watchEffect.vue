@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import{reactive,ref,watchEffect} from 'vue'
+import{ref,watchEffect} from 'vue'
 export default {
 	setup () {
 		const title = ref('');

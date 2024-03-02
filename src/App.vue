@@ -1,13 +1,24 @@
 <template>
 	<div>
-
+		<TheNav></TheNav>
+		<TheView></TheView>
+		<AppCard></AppCard>
 	</div>
 </template>
 
 <script>
-	export default {
-		
+import TheNav from "./components/TheNav.vue"
+import TheView from "./components/TheView.vue";
+
+export default{
+	components:{
+		TheNav,
+		TheView,
+	},
+	setup () {
+		return {TheNav, TheView};
 	}
+}
 </script>
 
 <style lang="scss" scoped>
