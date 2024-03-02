@@ -11,26 +11,30 @@
 						</AppCard>
 			</div>
 			</div>
-			<hr class="my-4"/>
-			<label>
-				이름
-				<input v-model="username" type="text" @keydown="console.log(username)"/>
-			</label>
-
+			<hr class="my-4">
+			<LabelInput v-model="username" label="이름"></LabelInput>
+			<LabelTitle v-model:title="username" label="제목"></LabelTitle>
+			<Username v-model:firstname="firstname" v-model:lastname="lastname"></Username>
 		</div>
 	</main>
 </template>
 
 <script>
 import PostCreate from '@/components/PostCreate.vue';
+import LabelInput from '@/components/LabelInput.vue';
+import LabelTitle from '@/components/LabelTitle.vue';
+import Username from '@/components/Username.vue';
+
 import {reactive,ref} from 'vue';
 import AppCard from './AppCard.vue';
 export default{
 	components : {
-		AppCard,PostCreate
+		AppCard,PostCreate,LabelInput,LabelTitle,Username
 	},
 	setup(){
 		const username=ref('');
+		const firstname=ref('');
+		const lastname=ref('');
 
 		const createPost=(newPost)=>{
 			console.log('createPost',newPost);
@@ -85,7 +89,7 @@ export default{
 
 		}
 	])
-		return {post,posts,obj,createPost,username}
+		return {post,posts,obj,createPost,username,firstname,lastname}
 	}
 }
 </script>
