@@ -1,53 +1,50 @@
 <template>
   <div class="row g-3">
+    <!-- @click="$emit('createPost',1,2,3,'김길동')" -->
     <div class="col col-2">
       <select v-model="type" class="form-select" aria-label="Default select example">
         <option selected>Open this select menu</option>
         <option value="news">뉴스</option>
         <option value="notice">공지사항</option>
-     </select>
+      </select>
     </div>
     <div class="col col-8">
-      <input v-model="title" type="text" class="form-control">
+      <input type="text" v-model="title" class="form-control">
     </div>
-    <div class="col col-2">    
-      <button class="btn btn-primary" @click="createPost">button</button>
+    <div class="col col-2">
+      <button class="btn btn-primary" @click="createPost">추가</button>
     </div>
-</div>
+
+
+  </div>
 </template>
 
 <script>
-import AppCard from './AppCard.vue';
-import {ref} from 'vue';
-
-  export default {
-    emits:{
-      createPost:(newPost)=>{
-        console.log('validator : ',newPost);
-        if(!newPost.type){
-          return false;
-        }
-        else if(!newPost.title){
-          return false;
-        }
-        return true;
+import {ref} from 'vue'
+ export default{
+  emits:{
+    createPost:newPost=>{
+      if(!newPost.type){
+        return false;
       }
+      return true;
     },
-    setup(props,{emit}){
-      const type=ref('news');
-      const title=ref('');
-      const createPost=()=>{
-        const newPost={
-          type: type.value,
-          title: title.value
-        }
-        emit('createPost',newPost);
-        type.value="news";
-        title.value='';
+  },
+  setup(props,{emit}){
+    const type=ref('news');
+    const title = ref('');
+    const createPost = ()=>{
+      const newPost={
+        type:type.value,
+        title:title.value
       }
-      return {createPost,title,type}
+      emit('createPost',newPost);
+      type.value='news';
+      title.value='';
     }
-  }
+    return {createPost, title,type};
+  },
+};
 </script>
 
 <style lang="scss" scoped>

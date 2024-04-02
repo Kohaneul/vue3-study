@@ -1,29 +1,31 @@
 <template>
-  <div>
-    <label>
-      {{label}}
-       <input v-model="value"
-       type="text">
-    </label>
-  </div>
+  <label>
+    {{ label }}
+  <input 
+    v-model="value"
+    type="text">
+    <!-- :value="modelValue"
+    @input="event=>$emit('update:modelValue')" -->
+  </label>
 </template>
 
 <script>
-import {computed} from 'vue';
+import { computed } from 'vue';
   export default {
     props:['modelValue','label'],
     emits:['update:modelValue'],
     setup(props,{emit}){
-       const value = computed({
+      const value = computed({
         get(){
-          return props.modelValue;
+          return props.modelValue
         },
         set(value){
           emit('update:modelValue',value)
-        },
-       })
-       return {value}
-    }
+        }
+
+      })
+      return{value};
+    },
   }
 </script>
 

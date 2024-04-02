@@ -5,12 +5,16 @@
 			<hr class="my-4"/>
 			<div class="row g-3" >
 				<div class="col col-4" v-for="post in posts" :key="post.id">
-					<AppCard :title="post.title" :contents="post.contents" :is-like = "post.isLike" :type="post.type"
-						@click="post.isLike = !post.isLike"
-						:obj="obj">
-						</AppCard>
+					<AppCard 
+									 :title="post.title"
+									 :contents="post.contents"
+									 :is-like = "post.isLike"
+									 :type="post.type"
+									 @toggle-like="post.isLike = !post.isLike">
+					</AppCard>
+				</div>
 			</div>
-			</div>
+
 			<hr class="my-4">
 			<LabelInput v-model="username" label="이름"></LabelInput>
 			<LabelTitle v-model:title="username" label="제목"></LabelTitle>
@@ -36,10 +40,6 @@ export default{
 		const firstname=ref('');
 		const lastname=ref('');
 
-		const createPost=(newPost)=>{
-			console.log('createPost',newPost);
-			posts.push(newPost);
-			}
 		const obj =reactive({
 			title:'제목',
 			contents:'내용'
@@ -89,7 +89,15 @@ export default{
 
 		}
 	])
-		return {post,posts,obj,createPost,username,firstname,lastname}
+	const createPost=(newPost)=>{
+		let id = posts.length+1;
+		newPost["id"] = id;
+		newPost["isLike"]=false;
+		newPost["contents"]="내용"+id;
+		posts.push(newPost);
+		console.log(newPost);
+	}
+		return {post,posts,obj,createPost,username,firstname,lastname,username}
 	}
 }
 </script>
