@@ -14,6 +14,7 @@ import LabelInput from '@/components/LabelInput.vue';
     components:{LabelInput}
     
   }
+  
 </script>
 
 <style lang="scss" scoped>
