@@ -1,50 +1,53 @@
 <template>
   <div class="row g-3">
-    <!-- @click="$emit('createPost',1,2,3,'김길동')" -->
-    <div class="col col-2">
-      <select v-model="type" class="form-select" aria-label="Default select example">
-        <option selected>Open this select menu</option>
-        <option value="news">뉴스</option>
-        <option value="notice">공지사항</option>
-      </select>
-    </div>
-    <div class="col col-8">
-      <input type="text" v-model="title" class="form-control">
+    <div class="col col-1">
+      <input type="checkbox" v-model="isLike" >
     </div>
     <div class="col col-2">
+      <select v-model="type" class="form-select">
+      <option value="news" selected>뉴스</option>
+      <option value="notice">공지사항</option>
+    </select>
+    </div>
+    <div class="col col-7">
+      <input type="text" v-model="title" class="form-control"/>
+    </div>
+    <div class="col col-2 d-grid">
       <button class="btn btn-primary" @click="createPost">추가</button>
     </div>
-
-
   </div>
 </template>
 
 <script>
-import {ref} from 'vue'
- export default{
-  emits:{
+import {reactive,ref} from 'vue'
+  export default {
+
+   emits:{
     createPost:newPost=>{
-      if(!newPost.type){
+      if(!newPost.title || !newPost.type){
         return false;
       }
       return true;
-    },
-  },
-  setup(props,{emit}){
-    const type=ref('news');
-    const title = ref('');
-    const createPost = ()=>{
-      const newPost={
-        type:type.value,
-        title:title.value
-      }
-      emit('createPost',newPost);
-      type.value='news';
-      title.value='';
     }
-    return {createPost, title,type};
-  },
-};
+   },
+    setup(props,{emit}){
+      const title = ref('');
+      const type = ref('news');
+      const isLike = ref(false);
+      const createPost = ()=>{
+        const newPost = {
+          title:title.value,
+          type:type.value,
+          isLike:isLike.value,
+        }
+        emit('createPost',newPost)
+        type.value='news';
+        title.value='';
+      }
+      return {title,type,isLike, createPost};
+    }
+
+  }
 </script>
 
 <style lang="scss" scoped>

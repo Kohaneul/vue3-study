@@ -1,23 +1,19 @@
 <template>
-  <div>
-    <LabelInput :model-value="fistname" @update:model-value="value=>$emit('update:firstname',value)" label="성"></LabelInput>
-    <LabelInput :model-value="lastname" label="이름" @update:model-value="value=>$emit('update:lastname',value)" ></LabelInput>
+  <LabelInput :model-value="firstname" @update:model-value="value => $emit('update:firstname',value)" label="성"></LabelInput>
+  <LabelInput :model-value="lastname" @update:model-value="value => $emit('update:lastname',value)" label="이름"></LabelInput>
 
-  </div>
 </template>
 
 <script>
-import LabelInput from "./LabelInput.vue";
-export default {
-  props:['firstname','lastname'],
-  emits:['update:firstname','update:lastname'],
-  components:{
-    LabelInput,
-  },
-  setup () {
-    return {}
+import LabelInput from './LabelInput.vue'
+  export default {
+    props:['firstname','lastname'],
+    emits:['update:firstname','update:lastname'],
+    components:{LabelInput},
+    setup(props,{emit}){
+
+    }
   }
-}
 </script>
 
 <style lang="scss" scoped>
