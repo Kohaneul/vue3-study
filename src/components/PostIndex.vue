@@ -5,13 +5,13 @@
 			<hr class="my-4"/>
 			<div class="row g-3" >
 				<div class="col col-4" v-for="post in posts" :key="post.id">
-					<AppCard 
+					<PostItem 
 									 :title="post.title"
 									 :contents="post.contents"
 									 :is-like = "post.isLike"
 									 :type="post.type"
 									 @toggle-like="post.isLike = !post.isLike">
-					</AppCard>
+					</PostItem>
 				</div>
 			</div>
 
@@ -27,10 +27,10 @@
 import PostCreate from '@/components/PostCreate.vue';
 import LabelInput from '@/components/LabelInput.vue';
 import {reactive,ref} from 'vue';
-import AppCard from './AppCard.vue';
+import PostItem from './PostItem.vue';
 export default{
 	components : {
-		AppCard,PostCreate
+		PostItem,PostCreate
 	},
 	setup(){
 		const username=ref('');
