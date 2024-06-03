@@ -10,7 +10,8 @@
 									 :contents="post.contents"
 									 :is-like = "post.isLike"
 									 :type="post.type"
-									 @toggle-like="post.isLike = !post.isLike">
+									 @toggle-like="post.isLike = !post.isLike"
+									 >
 					</PostItem>
 				</div>
 			</div>

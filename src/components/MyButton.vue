@@ -1,3 +1,5 @@
+MyButton.vue
+
 <template>
   <div class="p-3 bg-danger">
     <button class="btn btn-primary" type="button" @click="sayHello">My Button</button>
@@ -14,7 +16,8 @@
       // console.log(context.attrs.id);
       // console.log(context.attrs.onClick);
       const sayHello = ()=>{
-        emit('click');
+        emit('sayHello');
+        alert('hi');
       }
       return {sayHello}
     }
