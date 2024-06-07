@@ -1,19 +1,19 @@
 <template>
 <main>
-	<LifecycleHook></LifecycleHook>
+	<TemplateRefsVue></TemplateRefsVue>	
 </main>
 </template>
 
 <script>
 	import LifecycleHook from "./LifecycleHook.vue";
-
+import TemplateRefsVue from "./TemplateRefs.vue";
 export default{
 	components:{
-		LifecycleHook
+		TemplateRefsVue
 	},
 	setup(){
-		return {}
-	}
+		return {};
+	},
 }
 </script>
 <style lang="scss" scoped>
